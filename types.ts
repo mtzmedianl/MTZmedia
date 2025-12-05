@@ -7,6 +7,7 @@ export interface Project {
   description: string;
   client?: string;
   tools?: string;
+  isEmbed?: boolean;
 }
 
 export interface NavItem {
