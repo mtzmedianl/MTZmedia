@@ -8,6 +8,7 @@ export interface Project {
   client?: string;
   tools?: string;
   isEmbed?: boolean;
+  vertical?: boolean;
 }
 
 export interface NavItem {
