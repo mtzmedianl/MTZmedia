@@ -12,7 +12,7 @@ const projects: Project[] = [
     title: "Vloerspot",
     category: "Interieur / Commercieel",
     thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop",
-    videoUrl: "vimeo", // speciaal gemarkeerd
+    videoUrl: "https://next.frame.io/project/8383bfc0-b8e0-4141-9006-083e6df84e79/view/0d7f94fc-ac6a-41ab-962a-36f3fba84647",
     description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
     client: "Vloer Spot Leeuwarden",
     tools: "Premiere Pro, After Effects"
@@ -59,6 +59,7 @@ const Portfolio: React.FC = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-b from-transparent via-dodger-blue/30 to-transparent"></div>
 
       <div className="max-w-[1400px] mx-auto px-6">
+        
         {/* Header */}
         <motion.div 
           variants={staggerContainer}
@@ -133,24 +134,24 @@ const Portfolio: React.FC = () => {
                 <X size={24} />
               </button>
 
-              {/* Video / Vimeo */}
-              <div className="w-full md:w-1/2 lg:w-5/12 bg-black flex items-center justify-center relative border-b md:border-b-0 md:border-r border-white/10 aspect-[9/16] md:aspect-auto">
+              {/* Video */}
+              <div className="w-full md:w-1/2 lg:w-5/12 bg-black flex items-center justify-center relative border-b md:border-b-0 md:border-r border-white/10">
                 {selectedProject.id === 1 ? (
                   <iframe
                     src="https://player.vimeo.com/video/1143889949?h=e7e95efb1a"
-                    width="100%"
-                    height="100%"
+                    width="320"
+                    height="568"
                     frameBorder="0"
                     allow="autoplay; fullscreen; picture-in-picture"
                     allowFullScreen
-                    className="w-full h-full"
+                    className="w-auto h-auto max-h-[70vh] rounded-sm"
                   ></iframe>
                 ) : (
                   <video
                     src={selectedProject.videoUrl}
                     controls
                     autoPlay
-                    className="w-full h-full object-contain max-h-[85vh]"
+                    className="w-auto h-auto max-h-[70vh] object-contain rounded-sm"
                   />
                 )}
               </div>
@@ -223,13 +224,11 @@ const ProjectCard: React.FC<{
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (project.videoUrl !== "vimeo") { // alleen MP4 video hover
-      if (isHovered) videoRef.current?.play().catch(() => {});
-      else {
-        if(videoRef.current) { videoRef.current.pause(); videoRef.current.currentTime = 0; }
-      }
+    if (isHovered) videoRef.current?.play().catch(() => {});
+    else {
+      if(videoRef.current) { videoRef.current.pause(); videoRef.current.currentTime = 0; }
     }
-  }, [isHovered, project.videoUrl]);
+  }, [isHovered]);
 
   return (
     <motion.div
@@ -250,16 +249,14 @@ const ProjectCard: React.FC<{
         whileTap="tap"
       >
         <img src={project.thumbnail} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
-        {project.videoUrl !== "vimeo" && (
-          <video
-            ref={videoRef}
-            src={project.videoUrl}
-            loop
-            muted
-            playsInline
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-          />
-        )}
+        <video
+          ref={videoRef}
+          src={project.videoUrl}
+          loop
+          muted
+          playsInline
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+        />
         <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
           <motion.div className="w-16 h-16 rounded-full flex items-center justify-center backdrop-blur-sm border shadow-lg" variants={playButtonVariants}>
             <Play size={24} fill="white" className="text-white ml-1" />
