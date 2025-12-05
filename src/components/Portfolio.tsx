@@ -11,11 +11,11 @@ const projects: Project[] = [
     id: 1,
     title: "Vloerspot",
     category: "Interieur / Commercieel",
-    videoUrl: "https://player.vimeo.com/video/1143889949",
-    description: "After Effects-reel met sterke hook...",
+    thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop",
+    videoUrl: "https://vimeo.com/1143889949?fl=pl&fe=sh",
+    description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
     client: "Vloer Spot Leeuwarden",
-    tools: "Premiere Pro, After Effects",
-    thumbnail: null,
+    tools: "Premiere Pro, After Effects"
   },
   {
     id: 2,
@@ -134,25 +134,14 @@ const Portfolio: React.FC = () => {
                 <X size={24} />
               </button>
 
-              {/* Video / Vimeo */}
+              {/* Video */}
               <div className="w-full md:w-1/2 lg:w-5/12 bg-black flex items-center justify-center relative border-b md:border-b-0 md:border-r border-white/10 aspect-[9/16] md:aspect-auto">
-                {selectedProject.videoUrl?.includes("vimeo.com") ? (
-                  <iframe
-                    title={selectedProject.title}
-                    src={`${selectedProject.videoUrl}?h=e7e95efb1a`}
-                    className="w-full h-full"
-                    frameBorder="0"
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                    allowFullScreen
-                  />
-                ) : (
-                  <video 
-                    src={selectedProject.videoUrl}
-                    controls
-                    autoPlay
-                    className="w-full h-full object-contain max-h-[85vh]"
-                  />
-                )}
+                <video 
+                  src={selectedProject.videoUrl}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain max-h-[85vh]"
+                />
               </div>
 
               {/* Details */}
@@ -247,36 +236,20 @@ const ProjectCard: React.FC<{
         whileHover="hover"
         whileTap="tap"
       >
-        {project.thumbnail && (
-          <img src={project.thumbnail} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
-        )}
-
-        {project.videoUrl?.includes("vimeo.com") ? (
-          <iframe
-            title={project.title}
-            src={`${project.videoUrl}?h=e7e95efb1a`}
-            className="absolute inset-0 w-full h-full object-cover"
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-            allowFullScreen
-          />
-        ) : (
-          <video
-            ref={videoRef}
-            src={project.videoUrl}
-            loop
-            muted
-            playsInline
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-          />
-        )}
-
+        <img src={project.thumbnail} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
+        <video
+          ref={videoRef}
+          src={project.videoUrl}
+          loop
+          muted
+          playsInline
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+        />
         <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
           <motion.div className="w-16 h-16 rounded-full flex items-center justify-center backdrop-blur-sm border shadow-lg" variants={playButtonVariants}>
             <Play size={24} fill="white" className="text-white ml-1" />
           </motion.div>
         </div>
-
         <div className="absolute bottom-0 left-0 right-0 p-6 z-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 pointer-events-none">
           <span className="text-dodger-blue text-[10px] uppercase tracking-widest font-bold mb-1 block drop-shadow-md">
             Bekijk Project
@@ -285,7 +258,6 @@ const ProjectCard: React.FC<{
             {project.title}
           </h3>
         </div>
-
         <div className={`absolute top-4 right-4 p-2 bg-black/40 backdrop-blur-md rounded-full text-white transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
           <Maximize2 size={16} />
         </div>
