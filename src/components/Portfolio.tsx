@@ -15,6 +15,7 @@ const projects: Project[] = [
     description: "After Effects-reel met sterke hook...",
     client: "Vloer Spot Leeuwarden",
     tools: "Premiere Pro, After Effects",
+    thumbnail: null,
   },
   {
     id: 2,
