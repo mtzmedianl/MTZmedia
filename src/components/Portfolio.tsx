@@ -18,13 +18,14 @@ const projects: Project[] = [
     thumbnail: null,
   },
   {
-    id: 2,
+   id: 2,
     title: "Merklenz",
-    category: "Branding / Social",
-    videoUrl: "https://player.vimeo.com/video/XXXXXXXX",
-    description: "Beschrijving voor Merklenz...",
-    client: "Merklenz",
-    tools: "Premiere Pro, After Effects",
+    category: "Marketing",
+    thumbnail: "https://images.unsplash.com/photo-1615900119312-2acd3a71f3aa?q=80&w=1974&auto=format&fit=crop",
+    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-vertical-driving-a-car-through-the-city-at-night-40348-large.mp4",
+    description: "Rauwe straatrace-cultuur vastgelegd met dynamische camerabewegingen en ritmische montage.",
+    client: "Red Bull",
+    tools: "Premiere Pro, Cinema 4D"
   },
   {
     id: 3,
