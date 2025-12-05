@@ -12,9 +12,10 @@ const projects: Project[] = [
     title: "Vloerspot",
     category: "Interieur / Commercieel",
     videoUrl: "https://player.vimeo.com/video/1143889949",
-    description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
+    description: "After Effects-reel met sterke hook...",
     client: "Vloer Spot Leeuwarden",
     tools: "Premiere Pro, After Effects",
+    thumbnail: "", 
   },
   {
     id: 2,
