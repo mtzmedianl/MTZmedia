@@ -8,23 +8,22 @@ import { fadeInUp, staggerContainer, modalOverlay, modalContent } from '../utils
 // Sample data
 const projects: Project[] = [
   {
-  id: 1,
-  title: "Vloerspot",
-  category: "Interieur / Commercieel",
-  videoUrl: "https://player.vimeo.com/video/1143889949",
-  description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
-  client: "Vloer Spot Leeuwarden",
-  tools: "Premiere Pro, After Effects"
-},
+    id: 1,
+    title: "Vloerspot",
+    category: "Interieur / Commercieel",
+    videoUrl: "https://player.vimeo.com/video/1143889949",
+    description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
+    client: "Vloer Spot Leeuwarden",
+    tools: "Premiere Pro, After Effects",
+  },
   {
     id: 2,
     title: "Merklenz",
-    category: "Marketing",
-    thumbnail: "https://images.unsplash.com/photo-1615900119312-2acd3a71f3aa?q=80&w=1974&auto=format&fit=crop",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-vertical-driving-a-car-through-the-city-at-night-40348-large.mp4",
-    description: "Rauwe straatrace-cultuur vastgelegd met dynamische camerabewegingen en ritmische montage.",
-    client: "Red Bull",
-    tools: "Premiere Pro, Cinema 4D"
+    category: "Branding / Social",
+    videoUrl: "https://player.vimeo.com/video/XXXXXXXX",
+    description: "Beschrijving voor Merklenz...",
+    client: "Merklenz",
+    tools: "Premiere Pro, After Effects",
   },
   {
     id: 3,
