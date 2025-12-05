@@ -12,7 +12,7 @@ const projects: Project[] = [
     title: "Vloerspot",
     category: "Interieur / Commercieel",
     thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop",
-    videoUrl: "https://player.vimeo.com/video/1143889949?h=e7e95efb1a",
+    videoUrl: "https://drive.google.com/uc?export=download&id=1buHCuc0IEl7pMwVQoNUbS72BC4pKKB9m", // directe Google Drive link
     description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
     client: "Vloer Spot Leeuwarden",
     tools: "Premiere Pro, After Effects"
@@ -55,11 +55,9 @@ const Portfolio: React.FC = () => {
 
   return (
     <section id="portfolio" className="py-32 relative w-full bg-transparent">
-      {/* Vertical Guide Line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-b from-transparent via-dodger-blue/30 to-transparent"></div>
 
       <div className="max-w-[1400px] mx-auto px-6">
-        
         {/* Header */}
         <motion.div 
           variants={staggerContainer}
@@ -98,16 +96,6 @@ const Portfolio: React.FC = () => {
             />
           ))}
         </motion.div>
-
-        {/* View All Button */}
-        <div className="mt-20 flex justify-center">
-          <a href="#portfolio" className="group relative px-10 py-4 border border-white/10 hover:border-dodger-blue transition-colors duration-300 overflow-hidden">
-            <div className="absolute inset-0 w-0 bg-dodger-blue transition-all duration-300 group-hover:w-full opacity-10"></div>
-            <span className="relative z-10 text-sm uppercase tracking-[0.2em] font-medium flex items-center">
-              Bekijk alle projecten <ArrowUpRight size={16} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </span>
-          </a>
-        </div>
       </div>
 
       {/* Modal */}
@@ -135,7 +123,7 @@ const Portfolio: React.FC = () => {
               </button>
 
               {/* Video */}
-              <div className="flex-shrink-0 md:w-auto md:max-w-[45%] bg-black flex items-center justify-center p-2">
+              <div className="flex-shrink-0 md:w-auto md:max-w-[45%] flex items-center justify-center p-2">
                 <video
                   src={selectedProject.videoUrl}
                   controls
