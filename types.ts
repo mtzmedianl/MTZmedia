@@ -2,7 +2,7 @@ export interface Project {
   id: number;
   title: string;
   category: string;
-  thumbnail: string;
+  thumbnail: null;
   videoUrl?: string; // URL for the video file
   description: string;
   client?: string;
