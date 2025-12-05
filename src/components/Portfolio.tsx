@@ -15,7 +15,7 @@ const projects: Project[] = [
   description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
   client: "Vloer Spot Leeuwarden",
   tools: "Premiere Pro, After Effects"
-};
+},
   {
     id: 2,
     title: "Merklenz",
