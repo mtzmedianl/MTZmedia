@@ -15,8 +15,7 @@ const projects: Project[] = [
     videoUrl: "https://player.vimeo.com/video/1143889949?h=e7e95efb1a",
     description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
     client: "Vloer Spot Leeuwarden",
-    tools: "Premiere Pro, After Effects",
-    vertical: true, // extra property om ratio te bepalen
+    tools: "Premiere Pro, After Effects"
   },
   {
     id: 2,
@@ -26,8 +25,7 @@ const projects: Project[] = [
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-vertical-driving-a-car-through-the-city-at-night-40348-large.mp4",
     description: "Rauwe straatrace-cultuur vastgelegd met dynamische camerabewegingen en ritmische montage.",
     client: "Red Bull",
-    tools: "Premiere Pro, Cinema 4D",
-    vertical: false,
+    tools: "Premiere Pro, Cinema 4D"
   },
   {
     id: 3,
@@ -37,8 +35,7 @@ const projects: Project[] = [
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-vertical-waves-rolling-onto-a-beach-at-sunset-40263-large.mp4",
     description: "Meeslepende ervaring voor een 5-sterren resort, met focus op rust en textuur.",
     client: "Four Seasons",
-    tools: "Final Cut Pro, Sound Design",
-    vertical: false,
+    tools: "Final Cut Pro, Sound Design"
   },
   {
     id: 4,
@@ -48,8 +45,7 @@ const projects: Project[] = [
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-vertical-man-running-on-a-treadmill-40306-large.mp4",
     description: "Snelle, ritmische montage voor de lancering van een wereldwijde fitness kledingcampagne.",
     client: "Nike",
-    tools: "Premiere Pro, DaVinci Resolve",
-    vertical: false,
+    tools: "Premiere Pro, DaVinci Resolve"
   }
 ];
 
@@ -57,16 +53,14 @@ const Portfolio: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
-  const getModalClass = (project: Project | null) => {
-    if (!project) return 'w-full md:w-1/2 lg:w-5/12';
-    return project.vertical ? 'w-[320px] md:w-[400px] lg:w-[450px]' : 'w-full md:w-1/2 lg:w-5/12';
-  };
-
   return (
     <section id="portfolio" className="py-32 relative w-full bg-transparent">
+      {/* Vertical Guide Line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-b from-transparent via-dodger-blue/30 to-transparent"></div>
 
       <div className="max-w-[1400px] mx-auto px-6">
+        
+        {/* Header */}
         <motion.div 
           variants={staggerContainer}
           initial="hidden"
@@ -91,6 +85,7 @@ const Portfolio: React.FC = () => {
           </motion.p>
         </motion.div>
 
+        {/* Video Grid */}
         <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {projects.map((project, index) => (
             <ProjectCard 
@@ -104,6 +99,7 @@ const Portfolio: React.FC = () => {
           ))}
         </motion.div>
 
+        {/* View All Button */}
         <div className="mt-20 flex justify-center">
           <a href="#portfolio" className="group relative px-10 py-4 border border-white/10 hover:border-dodger-blue transition-colors duration-300 overflow-hidden">
             <div className="absolute inset-0 w-0 bg-dodger-blue transition-all duration-300 group-hover:w-full opacity-10"></div>
@@ -114,6 +110,7 @@ const Portfolio: React.FC = () => {
         </div>
       </div>
 
+      {/* Modal */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -126,38 +123,29 @@ const Portfolio: React.FC = () => {
           >
             <motion.div
               variants={modalContent}
-              className={`relative max-h-[90vh] bg-[#0C0C0E] border border-white/10 overflow-hidden flex flex-col md:flex-row shadow-2xl rounded-sm ${getModalClass(selectedProject)}`}
+              className="relative w-full max-w-6xl max-h-[90vh] bg-[#0C0C0E] border border-white/10 shadow-2xl overflow-hidden rounded-sm flex flex-col md:flex-row"
               onClick={(e) => e.stopPropagation()}
             >
-              <button 
+              {/* Close Button */}
+              <button
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-4 right-4 z-20 p-2 bg-black/50 rounded-full text-white hover:text-dodger-blue transition-colors border border-white/10 hover:border-dodger-blue"
               >
                 <X size={24} />
               </button>
 
-              <div className="w-full h-full bg-black flex items-center justify-center relative border-b md:border-b-0 md:border-r border-white/10">
-                {selectedProject.id === 1 ? (
-                  <iframe
-                    src={selectedProject.videoUrl}
-                    width="100%"
-                    height="100%"
-                    frameBorder="0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowFullScreen
-                    className="rounded-sm"
-                  ></iframe>
-                ) : (
-                  <video
-                    src={selectedProject.videoUrl}
-                    controls
-                    autoPlay
-                    className="w-full h-full object-contain rounded-sm"
-                  />
-                )}
+              {/* Video */}
+              <div className="flex-shrink-0 md:w-auto md:max-w-[45%] bg-black flex items-center justify-center p-2">
+                <video
+                  src={selectedProject.videoUrl}
+                  controls
+                  autoPlay
+                  className="h-auto w-full max-h-[85vh] object-contain"
+                />
               </div>
 
-              <div className="w-full md:w-1/2 lg:w-7/12 p-8 md:p-12 overflow-y-auto">
+              {/* Details */}
+              <div className="flex-1 p-6 md:p-12 overflow-y-auto">
                 <div className="flex items-center gap-3 mb-6">
                   <span className="px-3 py-1 text-xs font-bold text-black bg-dodger-blue uppercase tracking-wider rounded-sm">
                     {selectedProject.category}
