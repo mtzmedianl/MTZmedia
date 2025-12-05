@@ -8,15 +8,14 @@ import { fadeInUp, staggerContainer, modalOverlay, modalContent } from '../utils
 // Sample data
 const projects: Project[] = [
   {
-    id: 1,
-    title: "Vloerspot",
-    category: "Interieur / Commercieel",
-    thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop",
-    videoUrl: "https://next.frame.io/project/8383bfc0-b8e0-4141-9006-083e6df84e79/view/0d7f94fc-ac6a-41ab-962a-36f3fba84647",
-    description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
-    client: "Vloer Spot Leeuwarden",
-    tools: "Premiere Pro, After Effects"
-  },
+  id: 1,
+  title: "Vloerspot",
+  category: "Interieur / Commercieel",
+  videoUrl: "https://player.vimeo.com/video/1143889949",
+  description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
+  client: "Vloer Spot Leeuwarden",
+  tools: "Premiere Pro, After Effects"
+};
   {
     id: 2,
     title: "Merklenz",
