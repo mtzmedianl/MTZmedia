@@ -5,14 +5,15 @@ import { Project } from '../app/types';
 import { Play, X, Maximize2, ArrowUpRight } from 'lucide-react';
 import { fadeInUp, staggerContainer, modalOverlay, modalContent } from '../utils/animations';
 
-// Sample data
+// Project data
 const projects: Project[] = [
   {
     id: 1,
     title: "Vloerspot",
     category: "Interieur / Commercieel",
     thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop",
-    videoUrl: "https://vimeo.com/1143889949?fl=pl&fe=sh",
+    videoUrl: "https://player.vimeo.com/video/1143889949?h=e7e95efb1a",
+    isEmbed: true,
     description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
     client: "Vloer Spot Leeuwarden",
     tools: "Premiere Pro, After Effects"
@@ -23,6 +24,7 @@ const projects: Project[] = [
     category: "Marketing",
     thumbnail: "https://images.unsplash.com/photo-1615900119312-2acd3a71f3aa?q=80&w=1974&auto=format&fit=crop",
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-vertical-driving-a-car-through-the-city-at-night-40348-large.mp4",
+    isEmbed: false,
     description: "Rauwe straatrace-cultuur vastgelegd met dynamische camerabewegingen en ritmische montage.",
     client: "Red Bull",
     tools: "Premiere Pro, Cinema 4D"
@@ -33,6 +35,7 @@ const projects: Project[] = [
     category: "Luxury Travel",
     thumbnail: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1973&auto=format&fit=crop",
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-vertical-waves-rolling-onto-a-beach-at-sunset-40263-large.mp4",
+    isEmbed: false,
     description: "Meeslepende ervaring voor een 5-sterren resort, met focus op rust en textuur.",
     client: "Four Seasons",
     tools: "Final Cut Pro, Sound Design"
@@ -43,6 +46,7 @@ const projects: Project[] = [
     category: "Fitness Brand",
     thumbnail: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1970&auto=format&fit=crop",
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-vertical-man-running-on-a-treadmill-40306-large.mp4",
+    isEmbed: false,
     description: "Snelle, ritmische montage voor de lancering van een wereldwijde fitness kledingcampagne.",
     client: "Nike",
     tools: "Premiere Pro, DaVinci Resolve"
@@ -59,7 +63,6 @@ const Portfolio: React.FC = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-b from-transparent via-dodger-blue/30 to-transparent"></div>
 
       <div className="max-w-[1400px] mx-auto px-6">
-        
         {/* Header */}
         <motion.div 
           variants={staggerContainer}
@@ -134,14 +137,27 @@ const Portfolio: React.FC = () => {
                 <X size={24} />
               </button>
 
-              {/* Video */}
+              {/* Video / Embed */}
               <div className="w-full md:w-1/2 lg:w-5/12 bg-black flex items-center justify-center relative border-b md:border-b-0 md:border-r border-white/10 aspect-[9/16] md:aspect-auto">
-                <video 
-                  src={selectedProject.videoUrl}
-                  controls
-                  autoPlay
-                  className="w-full h-full object-contain max-h-[85vh]"
-                />
+                {selectedProject.isEmbed ? (
+                  <iframe
+                    title={selectedProject.title}
+                    src={selectedProject.videoUrl}
+                    width="640"
+                    height="360"
+                    frameBorder="0"
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                    allowFullScreen
+                    className="w-full h-full"
+                  />
+                ) : (
+                  <video 
+                    src={selectedProject.videoUrl}
+                    controls
+                    autoPlay
+                    className="w-full h-full object-contain max-h-[85vh]"
+                  />
+                )}
               </div>
 
               {/* Details */}
@@ -212,11 +228,13 @@ const ProjectCard: React.FC<{
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (isHovered) videoRef.current?.play().catch(() => {});
-    else {
-      if(videoRef.current) { videoRef.current.pause(); videoRef.current.currentTime = 0; }
+    if (!project.isEmbed) {
+      if (isHovered) videoRef.current?.play().catch(() => {});
+      else {
+        if(videoRef.current) { videoRef.current.pause(); videoRef.current.currentTime = 0; }
+      }
     }
-  }, [isHovered]);
+  }, [isHovered, project.isEmbed]);
 
   return (
     <motion.div
@@ -237,14 +255,16 @@ const ProjectCard: React.FC<{
         whileTap="tap"
       >
         <img src={project.thumbnail} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
-        <video
-          ref={videoRef}
-          src={project.videoUrl}
-          loop
-          muted
-          playsInline
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-        />
+        {!project.isEmbed && (
+          <video
+            ref={videoRef}
+            src={project.videoUrl}
+            loop
+            muted
+            playsInline
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+          />
+        )}
         <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
           <motion.div className="w-16 h-16 rounded-full flex items-center justify-center backdrop-blur-sm border shadow-lg" variants={playButtonVariants}>
             <Play size={24} fill="white" className="text-white ml-1" />
