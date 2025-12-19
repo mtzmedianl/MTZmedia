@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 
 export default function UnderConstruction() {
@@ -10,33 +11,42 @@ export default function UnderConstruction() {
         alignItems: 'center',
         height: '100vh',
         width: '100%',
-        backgroundColor: '#00A2E8', // Dodger Blue
+        backgroundColor: '#1F1F1F', // donker antraciet
         color: 'white',
-        fontFamily: 'Arial, sans-serif',
+        fontFamily: 'var(--font-geist-sans)', // dezelfde font als Hero
         textAlign: 'center',
         padding: '2rem',
       }}
     >
-      {/* Logo / Brand */}
+      {/* Logo als tekst */}
       <div style={{ marginBottom: '2rem' }}>
-        <h1 style={{ fontSize: '3rem', fontWeight: 'bold', margin: 0 }}>
+        <h1
+          style={{
+            fontSize: '4rem', // groter, net als Hero
+            fontWeight: 'bold',
+            color: '#00A2E8', // Dodger Blue
+            margin: 0,
+          }}
+        >
           MTZ Media
         </h1>
-        <p style={{ fontSize: '1.2rem', marginTop: '0.5rem' }}>
+        <p style={{ fontSize: '1.5rem', color: 'white', marginTop: '0.5rem' }}>
           Video Editing & Social Media Content
         </p>
       </div>
 
-      {/* Under Construction Message */}
+      {/* Under Construction boodschap */}
       <div>
-        <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>🚧 Under Construction 🚧</h2>
-        <p style={{ fontSize: '1.2rem', maxWidth: '400px', margin: '0 auto' }}>
+        <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: 'white' }}>
+          🚧 Under Construction 🚧
+        </h2>
+        <p style={{ fontSize: '1.2rem', maxWidth: '400px', margin: '0 auto', color: 'white' }}>
           Onze website is tijdelijk offline voor updates. Kom later terug voor de nieuwste content!
         </p>
       </div>
 
-      {/* Optional Footer */}
-      <footer style={{ position: 'absolute', bottom: '1rem', fontSize: '0.9rem' }}>
+      {/* Footer */}
+      <footer style={{ position: 'absolute', bottom: '1rem', fontSize: '0.9rem', color: 'white' }}>
         &copy; {new Date().getFullYear()} MTZ Media
       </footer>
     </main>
