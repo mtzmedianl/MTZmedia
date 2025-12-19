@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import UnderConstruction from '../components/UnderConstruction';
 import Intro from '../components/Intro';
 import Hero from '../components/Hero';
 import Portfolio from '../components/Portfolio';
@@ -9,14 +10,14 @@ import Services from '../components/Services';
 import Contact from '../components/Contact';
 import Navbar from '../components/Navbar';
 import Background from '../components/Background';
-import UnderConstruction from '../components/UnderConstruction';
 
 export default function HomePage() {
-  // Check environment variable
+  // ✅ Under Construction check helemaal bovenaan
   if (process.env.NEXT_PUBLIC_UNDER_CONSTRUCTION === 'true') {
     return <UnderConstruction />;
   }
 
+  // Normale site
   const [showIntro, setShowIntro] = useState(true);
 
   const handleIntroComplete = () => setShowIntro(false);
