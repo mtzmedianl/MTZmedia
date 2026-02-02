@@ -4,12 +4,12 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark; /* belangrijk voor iOS */
+  --background: #0a0a0a;
+  --foreground: #ededed;
   --font-geist-sans: 'Geist Sans', Arial, Helvetica, sans-serif;
   --font-geist-mono: 'Fira Code', monospace;
 }
-
 
 body {
   background: var(--background);
