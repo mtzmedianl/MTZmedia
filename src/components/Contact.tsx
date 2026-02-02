@@ -78,9 +78,9 @@ const Contact: React.FC = () => {
             </a>
         </div>
 
-        <div className="text-xs text-gray-600 uppercase tracking-widest">
-            © {new Date().getFullYear()} MTZ Media. Alle rechten voorbehouden.
-        </div>
+   <div className="text-xs text-gray-600 uppercase tracking-widest">
+    © 2025 MTZ Media. Alle rechten voorbehouden.
+</div>
     </div>
 </motion.div>
       </div>
