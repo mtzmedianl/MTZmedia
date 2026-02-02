@@ -1,16 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Mail, Instagram, Linkedin, Phone } from "lucide-react";
 
 const Contact: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const calendlyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Calendly script dynamisch laden
+    // Dynamisch Calendly script laden
     const script = document.createElement("script");
     script.src = "https://assets.calendly.com/assets/external/widget.js";
     script.async = true;
     document.body.appendChild(script);
+
+    // Wanneer script is geladen, init inline widget
+    script.onload = () => {
+      if (window.Calendly && calendlyRef.current) {
+        // @ts-ignore
+        window.Calendly.initInlineWidget({
+          url: "https://calendly.com/mateusz-mtzmedia/30min?background_color=0a0a0a&text_color=ffffff&primary_color=0072e8",
+          parentElement: calendlyRef.current,
+          // hoogte van de widget beperken om scroll te voorkomen
+          // inline widget past zich automatisch aan, maar kan via CSS max-height worden afgedwongen
+        });
+      }
+    };
 
     return () => {
       document.body.removeChild(script);
@@ -19,12 +32,6 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="bg-transparent relative pt-32 pb-16 overflow-hidden">
-      {/* Vertical Guide Line */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-b from-transparent via-dodger-blue/30 to-transparent"></div>
-
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-dodger-blue/10 blur-[120px] rounded-full pointer-events-none" />
-
       <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -37,42 +44,15 @@ const Contact: React.FC = () => {
             <span className="text-dodger-blue">VOLGENDE STAP?</span>
           </h2>
           <p className="text-gray-400 text-xl max-w-2xl mx-auto mb-12 font-light">
-            <br />
             Laten we samen iets buitengewoons creëren.
           </p>
-
-          {/* CTA Button opent modal */}
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="inline-block group relative px-12 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.2em] text-sm overflow-hidden rounded-sm shadow-[0_0_20px_rgba(18,116,229,0.4)] hover:shadow-[0_0_40px_rgba(18,116,229,0.6)] transition-all duration-300"
-          >
-            <div className="absolute inset-0 bg-white/20 -skew-x-12 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out"></div>
-            <div className="absolute inset-0 rounded-sm ring-2 ring-white/20 group-hover:ring-white/40 group-hover:animate-pulse transition-all"></div>
-            <span className="relative z-10">Start jouw Project</span>
-          </button>
         </motion.div>
 
-        {/* Modal */}
-        {isModalOpen && (
-          <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
-            <div className="bg-gray-900 rounded-md max-w-3xl w-full max-h-[600px] overflow-hidden relative">
-              {/* Close Button */}
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="absolute top-3 right-3 text-white text-xl font-bold hover:text-dodger-blue transition-colors z-10"
-              >
-                &times;
-              </button>
-
-              {/* Calendly Inline Widget */}
-              <div
-                className="calendly-inline-widget w-full h-full"
-                data-url="https://calendly.com/mateusz-mtzmedia/30min?background_color=0a0a0a&text_color=ffffff&primary_color=0072e8"
-                style={{ minWidth: "320px", height: "100%" }}
-              ></div>
-            </div>
-          </div>
-        )}
+        {/* Calendly inline widget */}
+        <div
+          ref={calendlyRef}
+          className="w-full max-w-3xl mx-auto h-[600px]" // hoogte aanpassen naar wens
+        ></div>
 
         <motion.div
           initial={{ opacity: 0 }}
