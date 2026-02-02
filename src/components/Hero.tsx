@@ -72,6 +72,7 @@ const Hero: React.FC = () => {
         </motion.div>
       </motion.div>
 
+    
       {/* Scroll Indicator */}
       <motion.div 
         initial={{ opacity: 0 }}
