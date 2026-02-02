@@ -12,7 +12,7 @@ const projects: Project[] = [
     title: "Vloerspot",
     category: "Interieur / Commercieel",
     thumbnail: "https://i.imgur.com/ahlBp6e.png",
-    videoUrl: "https://i.imgur.com/iCiFTqv.mp4", // directe Google Drive link
+    videoUrl: "https://i.imgur.com/iCiFTqv.mp4", 
     description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
     client: "Vloer Spot Leeuwarden",
     tools: "Premiere Pro, After Effects"
@@ -23,19 +23,19 @@ const projects: Project[] = [
     category: "Marketing",
     thumbnail: "https://i.imgur.com/NoD0RzH.png",
     videoUrl: "https://i.imgur.com/xJZO8Ae.mp4",
-    description: "Rauwe straatrace-cultuur vastgelegd met dynamische camerabewegingen en ritmische montage.",
-    client: "Red Bull",
-    tools: "Premiere Pro, Cinema 4D"
+    description: "Bedrijfsintro voor Robu Security, gemaakt voor Merklenz Marketing. Inclusief knipwerk, captions, kleurcorrectie en geluidseffecten.",
+    client: "Merklenz Marketing",
+    tools: "Premiere Pro"
   },
   {
     id: 3,
-    title: "Hyrox Stockholm",
-    category: "Luxury Travel",
+    title: "Hyrox",
+    category: "Sport",
     videoUrl: "https://i.imgur.com/5Xjv8y2.mp4",
     thumbnail: "https://i.imgur.com/ZgLjOja.png",
-    description: "Meeslepende ervaring voor een 5-sterren resort, met focus op rust en textuur.",
-    client: "Four Seasons",
-    tools: "Final Cut Pro, Sound Design"
+    description: "Snelle, ritmische montage voor Iris haar hyrox wedstrijd in Stockholm.",
+    client: "Iris Meindertsma",
+    tools: "Premiere Pro"
   },
   {
     id: 4,
