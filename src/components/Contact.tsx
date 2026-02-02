@@ -38,6 +38,10 @@ const Contact: React.FC = () => {
                 <div className="absolute inset-0 rounded-sm ring-2 ring-white/20 group-hover:ring-white/40 group-hover:animate-pulse transition-all"></div>
                 
                 <span className="relative z-10">Start jouw Project</span>
+              <!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/mateusz-mtzmedia/30min?background_color=0a0a0a&text_color=ffffff&primary_color=0072e8" style="min-width:320px;height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
             </a>
         </motion.div>
         
