@@ -104,7 +104,7 @@ const About: React.FC = () => {
             {/* PNG met transparantie */}
             <div className="relative aspect-[4/5] border border-white/10 overflow-hidden rounded-sm">
               <img
-                src="https://i.imgur.com/4wqFz51.jpeg"
+                src="https://i.ibb.co/ymWYGpDC/IMG-6592.png"
                 alt="Selfie"
                 className="w-full h-full object-cover"
               />
