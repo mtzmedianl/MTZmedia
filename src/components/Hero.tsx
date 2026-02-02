@@ -4,8 +4,6 @@ import { Play } from 'lucide-react';
 import { fadeInUp, staggerContainer } from '../utils/animations';
 
 const Hero: React.FC = () => {
-  // Removed useScroll to ensure stability
-
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background handled globally via Background component */}
@@ -16,26 +14,30 @@ const Hero: React.FC = () => {
         whileInView="visible"
         viewport={{ once: true }}
         className="relative z-20 text-center max-w-6xl mx-auto px-6"
-        
       >
-              
-     {/* Grid Overlay - Mid background */}
-    <div 
-      className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"
-    />
+        {/* Grid Overlay - Mid background with extra rows/columns */}
+        <div
+          className="absolute inset-0
+                     bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),
+                         linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px),
+                         linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)_0.5rem_0.5rem,
+                         linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)_0.5rem_0.5rem]
+                     bg-[size:4rem_4rem]
+                     [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]
+                     pointer-events-none"
+        />
 
-        
-<motion.h1 
-  variants={fadeInUp}
-  className="font-display font-bold tracking-tight text-white mb-8 leading-[0.9] text-[clamp(3rem,8vw,7rem)] md:text-[clamp(5rem,9vw,9rem)]"
->
-  MTZ Media <br />
-
-  <span className="text-dodger-blue drop-shadow-[0_0_20px_rgba(18,116,229,0.4)] 
-                 text-[clamp(2rem,4vw,3rem)] md:text-[clamp(2.5rem,4vw,3.5rem)] block mt-2">
-  Creative Partner in videocontent
-</span>
-</motion.h1>
+        {/* Hero Title */}
+        <motion.h1 
+          variants={fadeInUp}
+          className="font-display font-bold tracking-tight text-white mb-8 leading-[0.9] text-[clamp(3rem,8vw,7rem)] md:text-[clamp(5rem,9vw,9rem)]"
+        >
+          MTZ Media <br />
+          <span className="text-dodger-blue drop-shadow-[0_0_20px_rgba(18,116,229,0.4)] 
+                           text-[clamp(2rem,4vw,3rem)] md:text-[clamp(2.5rem,4vw,3.5rem)] block mt-2">
+            Creative Partner in videocontent
+          </span>
+        </motion.h1>
 
         {/* Subline / Tagline */}
         <motion.div 
@@ -44,12 +46,12 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="max-w-4xl mx-auto mb-12 flex flex-col gap-4 md:gap-6"
         >
-            <p className="font-display font-medium text-xl md:text-2xl text-white tracking-[0.15em] uppercase">
-              Strategisch. Creatief. <span className="text-dodger-blue">Resultaatgericht.</span>
-            </p>
-            <p className="text-lg md:text-xl text-gray-300 font-light tracking-wide">
-              Video’s die omzet én bereik laten groeien.
-            </p>
+          <p className="font-display font-medium text-xl md:text-2xl text-white tracking-[0.15em] uppercase">
+            Strategisch. Creatief. <span className="text-dodger-blue">Resultaatgericht.</span>
+          </p>
+          <p className="text-lg md:text-xl text-gray-300 font-light tracking-wide">
+            Video’s die omzet én bereik laten groeien.
+          </p>
         </motion.div>
 
         {/* CTA Buttons */}
