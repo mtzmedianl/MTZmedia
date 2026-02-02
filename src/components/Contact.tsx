@@ -2,25 +2,27 @@ import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Mail, Instagram, Linkedin, Phone } from "lucide-react";
 
+// TypeScript fix voor window.Calendly
+declare global {
+  interface Window {
+    Calendly: any;
+  }
+}
+
 const Contact: React.FC = () => {
   const calendlyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Dynamisch Calendly script laden
     const script = document.createElement("script");
     script.src = "https://assets.calendly.com/assets/external/widget.js";
     script.async = true;
     document.body.appendChild(script);
 
-    // Wanneer script is geladen, init inline widget
     script.onload = () => {
       if (window.Calendly && calendlyRef.current) {
-        // @ts-ignore
         window.Calendly.initInlineWidget({
           url: "https://calendly.com/mateusz-mtzmedia/30min?background_color=0a0a0a&text_color=ffffff&primary_color=0072e8",
           parentElement: calendlyRef.current,
-          // hoogte van de widget beperken om scroll te voorkomen
-          // inline widget past zich automatisch aan, maar kan via CSS max-height worden afgedwongen
         });
       }
     };
@@ -32,7 +34,14 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="bg-transparent relative pt-32 pb-16 overflow-hidden">
+      {/* Vertical Guide Line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-b from-transparent via-dodger-blue/30 to-transparent"></div>
+
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-dodger-blue/10 blur-[120px] rounded-full pointer-events-none" />
+
       <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
+        {/* Intro Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,12 +57,14 @@ const Contact: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Calendly inline widget */}
+        {/* Calendly Inline Widget */}
         <div
           ref={calendlyRef}
-          className="w-full max-w-3xl mx-auto h-[600px]" // hoogte aanpassen naar wens
+          className="w-full max-w-3xl mx-auto h-[600px] sm:h-[500px] xs:h-[400px]"
+          style={{ minHeight: "300px" }}
         ></div>
 
+        {/* Footer / Bedrijfsgegevens + Socials */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
