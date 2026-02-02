@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Instagram, Linkedin, Phone } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Mail, Instagram, Linkedin, Phone } from "lucide-react";
 
 const Contact: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
+    // Calendly script dynamisch laden
     const script = document.createElement("script");
     script.src = "https://assets.calendly.com/assets/external/widget.js";
     script.async = true;
@@ -38,23 +41,38 @@ const Contact: React.FC = () => {
             Laten we samen iets buitengewoons creëren.
           </p>
 
-          {/* Premium CTA Button */}
-          <a
-            href="https://calendly.com/mateusz-mtzmedia/30min"
+          {/* CTA Button opent modal */}
+          <button
+            onClick={() => setIsModalOpen(true)}
             className="inline-block group relative px-12 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.2em] text-sm overflow-hidden rounded-sm shadow-[0_0_20px_rgba(18,116,229,0.4)] hover:shadow-[0_0_40px_rgba(18,116,229,0.6)] transition-all duration-300"
           >
             <div className="absolute inset-0 bg-white/20 -skew-x-12 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out"></div>
             <div className="absolute inset-0 rounded-sm ring-2 ring-white/20 group-hover:ring-white/40 group-hover:animate-pulse transition-all"></div>
             <span className="relative z-10">Start jouw Project</span>
-          </a>
-
-          {/* Calendly Inline Widget */}
-          <div
-            className="calendly-inline-widget mt-8"
-            data-url="https://calendly.com/mateusz-mtzmedia/30min?background_color=0a0a0a&text_color=ffffff&primary_color=0072e8"
-            style={{ minWidth: "320px", height: "700px" }}
-          ></div>
+          </button>
         </motion.div>
+
+        {/* Modal */}
+        {isModalOpen && (
+          <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+            <div className="bg-gray-900 rounded-md max-w-3xl w-full max-h-[600px] overflow-hidden relative">
+              {/* Close Button */}
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-3 right-3 text-white text-xl font-bold hover:text-dodger-blue transition-colors z-10"
+              >
+                &times;
+              </button>
+
+              {/* Calendly Inline Widget */}
+              <div
+                className="calendly-inline-widget w-full h-full"
+                data-url="https://calendly.com/mateusz-mtzmedia/30min?background_color=0a0a0a&text_color=ffffff&primary_color=0072e8"
+                style={{ minWidth: "320px", height: "100%" }}
+              ></div>
+            </div>
+          </div>
+        )}
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -79,10 +97,20 @@ const Contact: React.FC = () => {
           {/* Contact + Socials */}
           <div className="flex flex-col items-center md:items-end gap-6">
             <div className="flex space-x-8">
-              <a href="https://www.instagram.com/mtzmedia.nl/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-dodger-blue transition-colors">
+              <a
+                href="https://www.instagram.com/mtzmedia.nl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-dodger-blue transition-colors"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="https://www.linkedin.com/in/mateusz-michalczyszyn-4172a1377/?originalSubdomain=nl" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-dodger-blue transition-colors">
+              <a
+                href="https://www.linkedin.com/in/mateusz-michalczyszyn-4172a1377/?originalSubdomain=nl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-dodger-blue transition-colors"
+              >
                 <Linkedin size={20} />
               </a>
               <a href="mailto:info@mtzmedia.nl" className="text-gray-500 hover:text-dodger-blue transition-colors">
