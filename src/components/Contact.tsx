@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Instagram, Linkedin, Phone } from 'lucide-react';
 
+// TypeScript fix voor window.Calendly
 declare global {
   interface Window {
     Calendly: any;
@@ -9,7 +10,7 @@ declare global {
 }
 
 const Contact: React.FC = () => {
-  // Calendly script laden bij component mount
+  // Calendly CSS/JS laden
   useEffect(() => {
     if (!document.getElementById('calendly-script')) {
       const link = document.createElement('link');
@@ -25,11 +26,11 @@ const Contact: React.FC = () => {
     }
   }, []);
 
-  // Functie voor popup
+  // Functie om Calendly popup te openen
   const openCalendly = () => {
     if (window.Calendly) {
       window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/mateusz-mtzmedia/30min',
+        url: 'https://calendly.com/mateusz-mtzmedia/30min?background_color=0c0c0c&text_color=ffffff&primary_color=0072e8',
       });
     } else {
       alert('Calendly is nog aan het laden…');
@@ -38,7 +39,14 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="bg-transparent relative pt-32 pb-16 overflow-hidden">
+      {/* Vertical Guide Line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-b from-transparent via-dodger-blue/30 to-transparent"></div>
+
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-dodger-blue/10 blur-[120px] rounded-full pointer-events-none" />
+
       <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
+        {/* Intro Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +64,7 @@ const Contact: React.FC = () => {
           {/* CTA Button */}
           <button
             onClick={openCalendly}
-            className="inline-block group relative px-12 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.2em] text-sm overflow-hidden rounded-sm shadow-[0_0_20px_rgba(18,116,229,0.4)] hover:shadow-[0_0_40px_rgba(18,116,229,0.6)] transition-all duration-300"
+            className="inline-block group relative px-12 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.2em] text-sm overflow-hidden rounded-sm shadow-[0_0_20px_rgba(0,114,232,0.4)] hover:shadow-[0_0_40px_rgba(0,114,232,0.6)] transition-all duration-300"
           >
             <div className="absolute inset-0 bg-white/20 -skew-x-12 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out"></div>
             <div className="absolute inset-0 rounded-sm ring-2 ring-white/20 group-hover:ring-white/40 group-hover:animate-pulse transition-all"></div>
@@ -72,6 +80,7 @@ const Contact: React.FC = () => {
           transition={{ delay: 0.4 }}
           className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-end md:items-center gap-6 md:gap-0"
         >
+          {/* Bedrijfsgegevens */}
           <div className="flex flex-col text-left">
             <div className="text-2xl font-display font-bold text-white mb-2">
               MTZ MEDIA<span className="text-dodger-blue">.</span>
@@ -84,12 +93,23 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
+          {/* Contact + Socials */}
           <div className="flex flex-col items-center md:items-end gap-6">
             <div className="flex space-x-8">
-              <a href="https://www.instagram.com/mtzmedia.nl/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-dodger-blue transition-colors">
+              <a
+                href="https://www.instagram.com/mtzmedia.nl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-dodger-blue transition-colors"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="https://www.linkedin.com/in/mateusz-michalczyszyn-4172a1377/?originalSubdomain=nl" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-dodger-blue transition-colors">
+              <a
+                href="https://www.linkedin.com/in/mateusz-michalczyszyn-4172a1377/?originalSubdomain=nl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-dodger-blue transition-colors"
+              >
                 <Linkedin size={20} />
               </a>
               <a href="mailto:info@mtzmedia.nl" className="text-gray-500 hover:text-dodger-blue transition-colors">
