@@ -11,7 +11,6 @@ const projects: Project[] = [
     id: 1,
     title: "Vloerspot",
     category: "Interieur / Commercieel",
-    thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop",
     videoUrl: "https://i.imgur.com/iCiFTqv.mp4", // directe Google Drive link
     description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
     client: "Vloer Spot Leeuwarden",
@@ -21,7 +20,6 @@ const projects: Project[] = [
     id: 2,
     title: "Merklenz",
     category: "Marketing",
-    thumbnail: "https://images.unsplash.com/photo-1615900119312-2acd3a71f3aa?q=80&w=1974&auto=format&fit=crop",
     videoUrl: "https://i.imgur.com/xJZO8Ae.mp4",
     description: "Rauwe straatrace-cultuur vastgelegd met dynamische camerabewegingen en ritmische montage.",
     client: "Red Bull",
@@ -31,7 +29,6 @@ const projects: Project[] = [
     id: 3,
     title: "Hyrox Stockholm",
     category: "Luxury Travel",
-    thumbnail: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1973&auto=format&fit=crop",
     videoUrl: "https://i.imgur.com/5Xjv8y2.mp4",
     description: "Meeslepende ervaring voor een 5-sterren resort, met focus op rust en textuur.",
     client: "Four Seasons",
