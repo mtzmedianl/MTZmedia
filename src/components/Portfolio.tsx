@@ -11,6 +11,7 @@ const projects: Project[] = [
     id: 1,
     title: "Vloerspot",
     category: "Interieur / Commercieel",
+    thumbnail: "https://i.imgur.com/ahlBp6e.png",
     videoUrl: "https://i.imgur.com/iCiFTqv.mp4", // directe Google Drive link
     description: "After Effects-reel met sterke hook, A4 3D animatie, captions en color grading voor Vloer Spot Leeuwarden.",
     client: "Vloer Spot Leeuwarden",
@@ -20,6 +21,7 @@ const projects: Project[] = [
     id: 2,
     title: "Merklenz",
     category: "Marketing",
+    thumbnail: "https://i.imgur.com/NoD0RzH.png",
     videoUrl: "https://i.imgur.com/xJZO8Ae.mp4",
     description: "Rauwe straatrace-cultuur vastgelegd met dynamische camerabewegingen en ritmische montage.",
     client: "Red Bull",
@@ -30,6 +32,7 @@ const projects: Project[] = [
     title: "Hyrox Stockholm",
     category: "Luxury Travel",
     videoUrl: "https://i.imgur.com/5Xjv8y2.mp4",
+    thumbnail: "https://i.imgur.com/ZgLjOja.png",
     description: "Meeslepende ervaring voor een 5-sterren resort, met focus op rust en textuur.",
     client: "Four Seasons",
     tools: "Final Cut Pro, Sound Design"
