@@ -22,13 +22,13 @@ const Contact: React.FC = () => {
                 KLAAR VOOR DE <br /><span className="text-dodger-blue">VOLGENDE STAP?</span>
             </h2>
             <p className="text-gray-400 text-xl max-w-2xl mx-auto mb-12 font-light">
-                We nemen een beperkt aantal nieuwe klanten aan voor Q4. <br />
+               <br />
                 Laten we samen iets buitengewoons creëren.
             </p>
 
             {/* Premium CTA Button */}
             <a 
-                href="mailto:info@mtzmedia.nl" 
+                href="https://calendly.com/mateusz-mtzmedia/30min" 
                 className="inline-block group relative px-12 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.2em] text-sm overflow-hidden rounded-sm shadow-[0_0_20px_rgba(18,116,229,0.4)] hover:shadow-[0_0_40px_rgba(18,116,229,0.6)] transition-all duration-300"
             >
                 {/* Diagonal Light Sweep */}
