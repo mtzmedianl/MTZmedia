@@ -1,52 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Instagram, Linkedin, Phone } from 'lucide-react';
 
-// TypeScript fix voor window.Calendly
-declare global {
-  interface Window {
-    Calendly: any;
-  }
-}
-
 const Contact: React.FC = () => {
-  // Calendly CSS/JS laden
-  useEffect(() => {
-    if (!document.getElementById('calendly-script')) {
-      const link = document.createElement('link');
-      link.href = 'https://assets.calendly.com/assets/external/widget.css';
-      link.rel = 'stylesheet';
-      document.head.appendChild(link);
+  const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-      const script = document.createElement('script');
-      script.id = 'calendly-script';
-      script.src = 'https://assets.calendly.com/assets/external/widget.js';
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }, []);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
 
-  // Functie om Calendly popup te openen
-  const openCalendly = () => {
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/mateusz-mtzmedia/30min?background_color=0c0c0c&text_color=ffffff&primary_color=0072e8',
-      });
-    } else {
-      alert('Calendly is nog aan het laden…');
+    const formData = new FormData(e.currentTarget);
+
+    // Honeypot
+    if (formData.get('company')) {
+      setLoading(false);
+      return;
     }
+
+    // ⬇️ hier later backend / email / Formspree
+    await new Promise((r) => setTimeout(r, 1200));
+
+    setSent(true);
+    setLoading(false);
   };
 
   return (
     <section id="contact" className="bg-transparent relative pt-32 pb-16 overflow-hidden">
       {/* Vertical Guide Line */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-b from-transparent via-dodger-blue/30 to-transparent"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-b from-transparent via-dodger-blue/30 to-transparent" />
 
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-dodger-blue/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-dodger-blue/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
-        {/* Intro Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,71 +44,90 @@ const Contact: React.FC = () => {
             KLAAR VOOR DE <br />
             <span className="text-dodger-blue">VOLGENDE STAP?</span>
           </h2>
-          <p className="text-gray-400 text-xl max-w-2xl mx-auto mb-12 font-light">
+
+          <p className="text-gray-400 text-xl max-w-2xl mx-auto mb-16 font-light">
+            We nemen een beperkt aantal nieuwe klanten aan voor Q4.
+            <br />
             Laten we samen iets buitengewoons creëren.
           </p>
 
-          {/* CTA Button */}
-          <button
-            onClick={openCalendly}
-            className="inline-block group relative px-12 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.2em] text-sm overflow-hidden rounded-sm shadow-[0_0_20px_rgba(0,114,232,0.4)] hover:shadow-[0_0_40px_rgba(0,114,232,0.6)] transition-all duration-300"
-          >
-            <div className="absolute inset-0 bg-white/20 -skew-x-12 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out"></div>
-            <div className="absolute inset-0 rounded-sm ring-2 ring-white/20 group-hover:ring-white/40 group-hover:animate-pulse transition-all"></div>
-            <span className="relative z-10">Start jouw Project</span>
-          </button>
+          {!sent ? (
+            <form
+              onSubmit={handleSubmit}
+              className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
+            >
+              {/* Honeypot */}
+              <input type="text" name="company" className="hidden" />
+
+              <input required name="name" placeholder="Naam *" className="contact-input" />
+              <input required type="email" name="email" placeholder="E-mail *" className="contact-input" />
+              <input name="phone" placeholder="Telefoonnummer" className="contact-input" />
+              <input name="business" placeholder="Bedrijfsnaam" className="contact-input" />
+
+              <textarea
+                required
+                name="message"
+                placeholder="Waarmee kunnen we je helpen?"
+                className="contact-input md:col-span-2 h-40 resize-none"
+              />
+
+              <div className="md:col-span-2 flex justify-center mt-8">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="relative px-12 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.2em] text-sm rounded-sm shadow-[0_0_30px_rgba(0,114,232,0.5)] hover:shadow-[0_0_50px_rgba(0,114,232,0.7)] transition-all"
+                >
+                  {loading ? 'Verzenden…' : 'Start jouw Project'}
+                </button>
+              </div>
+            </form>
+          ) : (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-white">
+              <h3 className="text-3xl font-bold mb-4">Thanks 🚀</h3>
+              <p className="text-gray-400">
+                We nemen zo snel mogelijk contact met je op.
+              </p>
+            </motion.div>
+          )}
         </motion.div>
 
-        {/* Bedrijfsgegevens en socials */}
+        {/* Footer */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-end md:items-center gap-6 md:gap-0"
+          className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-end md:items-center gap-6"
         >
-          {/* Bedrijfsgegevens */}
           <div className="flex flex-col text-left">
             <div className="text-2xl font-display font-bold text-white mb-2">
               MTZ MEDIA<span className="text-dodger-blue">.</span>
             </div>
-            <div className="text-xs text-gray-500 space-y-1 uppercase tracking-wider font-light">
-              <p>Adres: Albert Cuypstraat 9, 8932 EC Leeuwarden</p>
-              <p>KVK Nummer: 96400188</p>
-              <p>BTW Nummer: NL005208001B16</p>
-              <p>Rechtsvorm: Eenmanszaak</p>
+            <div className="text-xs text-gray-500 space-y-1 uppercase tracking-wider">
+              <p>Albert Cuypstraat 9, 8932 EC Leeuwarden</p>
+              <p>KVK 96400188</p>
+              <p>BTW NL005208001B16</p>
             </div>
           </div>
 
-          {/* Contact + Socials */}
           <div className="flex flex-col items-center md:items-end gap-6">
             <div className="flex space-x-8">
-              <a
-                href="https://www.instagram.com/mtzmedia.nl/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-dodger-blue transition-colors"
-              >
+              <a href="https://www.instagram.com/mtzmedia.nl/" target="_blank" className="social">
                 <Instagram size={20} />
               </a>
-              <a
-                href="https://www.linkedin.com/in/mateusz-michalczyszyn-4172a1377/?originalSubdomain=nl"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-dodger-blue transition-colors"
-              >
+              <a href="https://www.linkedin.com" target="_blank" className="social">
                 <Linkedin size={20} />
               </a>
-              <a href="mailto:info@mtzmedia.nl" className="text-gray-500 hover:text-dodger-blue transition-colors">
+              <a href="mailto:contact@mtzmedia.com" className="social">
                 <Mail size={20} />
               </a>
-              <a href="tel:+31616341719" className="text-gray-500 hover:text-dodger-blue transition-colors">
+              <a href="tel:+31616341719" className="social">
                 <Phone size={20} />
               </a>
             </div>
 
             <div className="text-xs text-gray-600 uppercase tracking-widest">
-              © 2025 MTZ Media. Alle rechten voorbehouden.
+              © {new Date().getFullYear()} MTZ Media
             </div>
           </div>
         </motion.div>
