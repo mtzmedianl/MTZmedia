@@ -92,7 +92,7 @@ const Contact: React.FC = () => {
                 placeholder="Bijv. Jan de Vries"
                 className="contact-input placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dodger-blue rounded-md px-4 py-3 bg-gray-900 text-white"
               />
-              <small className="text-gray-500 mt-1">Vul je volledige naam in.</small>
+            
             </div>
             <div className="flex flex-col">
               <input
@@ -102,7 +102,7 @@ const Contact: React.FC = () => {
                 placeholder="Bijv. jan@email.com"
                 className="contact-input placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dodger-blue rounded-md px-4 py-3 bg-gray-900 text-white"
               />
-              <small className="text-gray-500 mt-1">Hier ontvang je mijn reactie.</small>
+            
             </div>
 
             {/* Rij 2 */}
@@ -133,7 +133,7 @@ const Contact: React.FC = () => {
                   Waar kunnen we je mee helpen? *
                 </option>
                 <option value="short-form">Short-form content (Reels / TikTok)</option>
-                <option value="social-video">Social media video</option>
+                <option value="long-form">Long-form content (Youtube)</option>
                 <option value="ads">Advertentie video’s</option>
                 <option value="brand-film">Brand / bedrijfsfilm</option>
                 <option value="other">Anders</option>
@@ -148,9 +148,7 @@ const Contact: React.FC = () => {
                 placeholder="Wat wil je laten zien of bereiken met video?"
                 className="contact-input resize-none h-48 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dodger-blue rounded-md px-4 py-3 bg-gray-900 text-white"
               />
-              <small className="text-gray-500 mt-1">
-                Vertel zo duidelijk mogelijk wat je wilt bereiken.
-              </small>
+            
             </div>
 
             {/* CTA */}
@@ -161,13 +159,13 @@ const Contact: React.FC = () => {
                 className="relative flex items-center gap-2 justify-center px-16 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.25em] text-sm rounded-md shadow-[0_0_30px_rgba(30,144,255,0.45)] hover:shadow-[0_0_50px_rgba(30,144,255,0.7)] transition-all"
               >
                 <Play size={16} />
-                {loading ? 'Even laden…' : 'Stuur jouw project'}
+                {loading ? 'Even laden…' : 'START JOUW PROJECT'}
               </button>
 
               <span className="text-xs text-gray-500 uppercase tracking-widest flex gap-4">
-                <span>🎯 Vrijblijvend</span>
-                <span>🤝 Persoonlijk</span>
-                <span>🚀 Geen verplichtingen</span>
+                <span> • Vrijblijvend</span>
+                <span> • Persoonlijk</span>
+                <span> • Geen verplichtingen</span>
               </span>
 
               <p className="text-gray-600 text-xs mt-2">
@@ -212,7 +210,7 @@ const Contact: React.FC = () => {
               >
                 <Linkedin size={20} />
               </a>
-              <a href="mailto:contact@mtzmedia.com" className="social">
+              <a href="mailto:mateusz@mtzmedia.nl" className="social">
                 <Mail size={20} />
               </a>
               <a href="tel:+31616341719" className="social">
