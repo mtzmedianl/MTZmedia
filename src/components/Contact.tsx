@@ -51,8 +51,8 @@ const Contact: React.FC = () => {
         >
           {/* Headline */}
           <h2 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-white mb-8 tracking-tight">
-            LATEN WE IETS <br />
-            <span className="text-dodger-blue">STERKS BOUWEN.</span>
+            KLAAR VOOR DE <br />
+            <span className="text-dodger-blue">VOLGENDE STAP?</span>
           </h2>
 
           {/* Subheadline */}
@@ -64,58 +64,80 @@ const Contact: React.FC = () => {
 
           {/* FORM */}
           <form
-            onSubmit={handleSubmit}
-            className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
-          >
-            {/* Honeypot */}
-            <input type="text" name="company" className="hidden" />
+  onSubmit={handleSubmit}
+  className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
+>
+  {/* Honeypot */}
+  <input type="text" name="company" className="hidden" />
 
-            <input
-              required
-              name="name"
-              placeholder="Naam *"
-              className="contact-input"
-            />
-            <input
-              required
-              type="email"
-              name="email"
-              placeholder="E-mail *"
-              className="contact-input"
-            />
+  {/* Rij 1 */}
+  <input
+    required
+    name="name"
+    placeholder="Naam *"
+    className="contact-input"
+  />
+  <input
+    required
+    type="email"
+    name="email"
+    placeholder="E-mail *"
+    className="contact-input"
+  />
 
-            <input
-              name="business"
-              placeholder="Bedrijfsnaam"
-              className="contact-input"
-            />
-            <input
-              name="link"
-              placeholder="Website of social link"
-              className="contact-input"
-            />
+  {/* Rij 2 */}
+  <input
+    name="business"
+    placeholder="Bedrijfsnaam"
+    className="contact-input"
+  />
+  <input
+    name="link"
+    placeholder="Website of social link"
+    className="contact-input"
+  />
 
-            <textarea
-              required
-              name="message"
-              placeholder="Vertel kort over je idee of doel"
-              className="contact-input md:col-span-2 h-40 resize-none"
-            />
+  {/* Rij 3 – Dropdown */}
+  <select
+    required
+    name="service"
+    defaultValue=""
+    className="contact-input md:col-span-2"
+  >
+    <option value="" disabled>
+      Waar kunnen we je mee helpen? *
+    </option>
+    <option value="short-form">Short-form content (Reels / TikTok)</option>
+    <option value="social-video">Social media video</option>
+    <option value="ads">Advertentie video’s</option>
+    <option value="brand-film">Brand / bedrijfsfilm</option>
+    <option value="other">Anders</option>
+  </select>
 
-            <div className="md:col-span-2 flex flex-col items-center mt-10 gap-4">
-              <button
-                type="submit"
-                disabled={loading}
-                className="relative px-14 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.25em] text-sm rounded-sm shadow-[0_0_30px_rgba(30,144,255,0.45)] hover:shadow-[0_0_50px_rgba(30,144,255,0.7)] transition-all"
-              >
-                {loading ? 'Even laden…' : 'Plan een kennismaking'}
-              </button>
+  {/* Rij 4 – Textarea */}
+  <textarea
+    required
+    name="message"
+    placeholder="Wat wil je laten zien of bereiken met video?"
+    className="contact-input md:col-span-2 h-40 resize-none"
+  />
 
-              <span className="text-xs text-gray-500 uppercase tracking-widest">
-                Vrijblijvend • Persoonlijk • Geen verplichtingen
-              </span>
-            </div>
-          </form>
+  {/* CTA */}
+  <div className="md:col-span-2 flex flex-col items-center mt-10 gap-4">
+    <button
+      type="submit"
+      disabled={loading}
+      className="relative px-14 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.25em] text-sm rounded-sm shadow-[0_0_30px_rgba(30,144,255,0.45)] hover:shadow-[0_0_50px_rgba(30,144,255,0.7)] transition-all"
+    >
+      {loading ? 'Even laden…' : 'Plan een kennismaking'}
+    </button>
+
+    <span className="text-xs text-gray-500 uppercase tracking-widest">
+      Vrijblijvend • Persoonlijk • Geen verplichtingen
+    </span>
+  </div>
+</form>
+
         </motion.div>
 
         {/* FOOTER */}
