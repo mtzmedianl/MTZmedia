@@ -3,17 +3,15 @@ import { motion } from 'framer-motion';
 import { Mail, Instagram, Linkedin, Phone, Play } from 'lucide-react';
 
 // Vervang dit met jouw Formspree endpoint
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mojnaaze';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID?format=plain';
 
 const Contact: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
 
     const formData = new FormData(e.currentTarget);
 
@@ -27,20 +25,16 @@ const Contact: React.FC = () => {
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         body: formData,
-        headers: {
-          Accept: 'application/json',
-        },
       });
 
       if (response.ok) {
         setSubmitted(true);
         e.currentTarget.reset();
       } else {
-        const data = await response.json();
-        setError(data.error || 'Er is iets misgegaan. Probeer het opnieuw.');
+        console.error('Formspree response not OK:', response);
       }
     } catch (err) {
-      setError('Er is iets misgegaan. Probeer het opnieuw.');
+      console.error('Formspree error:', err);
     } finally {
       setLoading(false);
     }
@@ -73,17 +67,12 @@ const Contact: React.FC = () => {
             Wij zetten het om in een video die écht blijft hangen.
           </p>
 
-          {/* Success & Error Toast */}
+          {/* Success Toast */}
           {submitted && (
             <div className="mb-6 inline-block px-6 py-3 bg-dodger-blue/20 text-white rounded-md font-medium">
               Bedankt! Ik neem binnenkort contact met je op. 💌
               <br />
               (Je kunt ondertussen ook direct een afspraak plannen: <a href="https://calendly.com/mateusz-mtzmedia/30min?background_color=0c0c0c&text_color=ffffff&primary_color=1e90ff" className="text-dodger-blue underline">Plan hier</a>)
-            </div>
-          )}
-          {error && (
-            <div className="mb-6 inline-block px-6 py-3 bg-red-600 text-white rounded-md font-medium">
-              {error}
             </div>
           )}
 
@@ -188,7 +177,7 @@ const Contact: React.FC = () => {
           </form>
         </motion.div>
 
-        {/* FOOTER blijft gelijk */}
+        {/* FOOTER */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
