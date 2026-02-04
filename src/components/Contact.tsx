@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Instagram, Linkedin, Phone } from 'lucide-react';
+import { Mail, Instagram, Linkedin, Phone, Play } from 'lucide-react';
 
 const CALENDLY_URL =
   'https://calendly.com/mateusz-mtzmedia/30min?background_color=0c0c0c&text_color=ffffff&primary_color=1e90ff';
 
 const Contact: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,11 +21,16 @@ const Contact: React.FC = () => {
       return;
     }
 
-    // UX flow testen
+    // Simuleer verwerking
     await new Promise((r) => setTimeout(r, 800));
 
+    // Show success toast
+    setSubmitted(true);
+
     // Redirect naar Calendly
-    window.location.href = CALENDLY_URL;
+    setTimeout(() => {
+      window.location.href = CALENDLY_URL;
+    }, 800);
   };
 
   return (
@@ -57,6 +63,13 @@ const Contact: React.FC = () => {
             Wij zetten het om in een video die écht blijft hangen.
           </p>
 
+          {/* Success Toast */}
+          {submitted && (
+            <div className="mb-6 inline-block px-6 py-3 bg-dodger-blue/20 text-white rounded-md font-medium">
+              Bedankt! Je wordt nu doorgestuurd naar mijn agenda.
+            </div>
+          )}
+
           {/* FORM */}
           <form
             onSubmit={handleSubmit}
@@ -66,64 +79,82 @@ const Contact: React.FC = () => {
             <input type="text" name="company" className="hidden" />
 
             {/* Rij 1 */}
-            <input
-              required
-              name="name"
-              placeholder="Bijv. Jan de Vries"
-              className="contact-input placeholder-gray-400"
-            />
-            <input
-              required
-              type="email"
-              name="email"
-              placeholder="Bijv. jan@email.com"
-              className="contact-input placeholder-gray-400"
-            />
+            <div className="flex flex-col">
+              <input
+                required
+                name="name"
+                placeholder="Bijv. Jan de Vries"
+                className="contact-input placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dodger-blue rounded-md px-4 py-3 bg-gray-900 text-white"
+              />
+              <small className="text-gray-500 mt-1">Vul je volledige naam in.</small>
+            </div>
+            <div className="flex flex-col">
+              <input
+                required
+                type="email"
+                name="email"
+                placeholder="Bijv. jan@email.com"
+                className="contact-input placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dodger-blue rounded-md px-4 py-3 bg-gray-900 text-white"
+              />
+              <small className="text-gray-500 mt-1">Hier ontvang je de bevestiging van je afspraak.</small>
+            </div>
 
             {/* Rij 2 */}
-            <input
-              name="business"
-              placeholder="Bedrijfsnaam (optioneel)"
-              className="contact-input placeholder-gray-400"
-            />
-            <input
-              name="link"
-              placeholder="Website, Instagram of LinkedIn"
-              className="contact-input placeholder-gray-400"
-            />
+            <div className="flex flex-col">
+              <input
+                name="business"
+                placeholder="Bedrijfsnaam (optioneel)"
+                className="contact-input placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dodger-blue rounded-md px-4 py-3 bg-gray-900 text-white"
+              />
+            </div>
+            <div className="flex flex-col">
+              <input
+                name="link"
+                placeholder="Website, Instagram of LinkedIn"
+                className="contact-input placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dodger-blue rounded-md px-4 py-3 bg-gray-900 text-white"
+              />
+            </div>
 
             {/* Rij 3 – Dropdown */}
-            <select
-              required
-              name="service"
-              defaultValue=""
-              className="contact-input md:col-span-2 text-gray-400 placeholder-gray-400"
-            >
-              <option value="" disabled className="text-gray-400">
-                Waar kunnen we je mee helpen? *
-              </option>
-              <option value="short-form">Short-form content (Reels / TikTok)</option>
-              <option value="social-video">Social media video</option>
-              <option value="ads">Advertentie video’s</option>
-              <option value="brand-film">Brand / bedrijfsfilm</option>
-              <option value="other">Anders</option>
-            </select>
+            <div className="md:col-span-2 flex flex-col">
+              <select
+                required
+                name="service"
+                defaultValue=""
+                className="contact-input placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dodger-blue rounded-md px-4 py-3 bg-gray-900 text-gray-300"
+              >
+                <option value="" disabled>
+                  Waar kunnen we je mee helpen? *
+                </option>
+                <option value="short-form">Short-form content (Reels / TikTok)</option>
+                <option value="social-video">Social media video</option>
+                <option value="ads">Advertentie video’s</option>
+                <option value="brand-film">Brand / bedrijfsfilm</option>
+                <option value="other">Anders</option>
+              </select>
+            </div>
 
             {/* Rij 4 – Textarea */}
-            <textarea
-              required
-              name="message"
-              placeholder="Wat wil je laten zien of bereiken met video?"
-              className="contact-input md:col-span-2 h-44 resize-none placeholder-gray-400"
-            />
+            <div className="md:col-span-2 flex flex-col">
+              <textarea
+                required
+                name="message"
+                placeholder="Wat wil je laten zien of bereiken met video?"
+                className="contact-input resize-none h-48 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dodger-blue rounded-md px-4 py-3 bg-gray-900 text-white"
+              />
+              <small className="text-gray-500 mt-1">
+                Vertel zo duidelijk mogelijk wat je wilt bereiken.
+              </small>
+            </div>
 
             {/* CTA */}
             <div className="md:col-span-2 flex flex-col items-center mt-10 gap-4">
               <button
                 type="submit"
                 disabled={loading}
-                className="relative px-16 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.25em] text-sm rounded-md shadow-[0_0_30px_rgba(30,144,255,0.45)] hover:shadow-[0_0_50px_rgba(30,144,255,0.7)] transition-all"
+                className="relative flex items-center gap-2 justify-center px-16 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.25em] text-sm rounded-md shadow-[0_0_30px_rgba(30,144,255,0.45)] hover:shadow-[0_0_50px_rgba(30,144,255,0.7)] transition-all"
               >
+                <Play size={16} />
                 {loading ? 'Even laden…' : 'Start jouw videoproject'}
               </button>
 
@@ -132,6 +163,10 @@ const Contact: React.FC = () => {
                 <span>🤝 Persoonlijk</span>
                 <span>🚀 Geen verplichtingen</span>
               </span>
+
+              <p className="text-gray-600 text-xs mt-2">
+                Je gegevens worden nooit gedeeld en alleen gebruikt voor dit project.
+              </p>
             </div>
           </form>
         </motion.div>
