@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, Instagram, Linkedin, Phone, Play } from 'lucide-react';
 
 // Vervang dit met jouw Formspree endpoint
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mojnaaze';
 
 const Contact: React.FC = () => {
   const [loading, setLoading] = useState(false);
