@@ -104,9 +104,9 @@ const Contact: React.FC = () => {
     defaultValue=""
     className="contact-input md:col-span-2"
   >
-    <option value="" disabled>
-      Waar kunnen we je mee helpen? *
-    </option>
+  <option value="" disabled className="text-gray-400">
+  Waar kunnen we je mee helpen? *
+</option>
     <option value="short-form">Short-form content (Reels / TikTok)</option>
     <option value="social-video">Social media video</option>
     <option value="ads">Advertentie video’s</option>
