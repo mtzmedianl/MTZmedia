@@ -20,11 +20,7 @@ const Contact: React.FC = () => {
       return;
     }
 
-    /**
-     * HIER:
-     * later → mail / backend / Formspree / Resend
-     * nu → UX flow testen
-     */
+    // UX flow testen
     await new Promise((r) => setTimeout(r, 800));
 
     // Redirect naar Calendly
@@ -34,7 +30,7 @@ const Contact: React.FC = () => {
   return (
     <section
       id="contact"
-      className="bg-transparent relative pt-32 pb-16 overflow-hidden"
+      className="bg-black relative pt-32 pb-16 overflow-hidden"
     >
       {/* Vertical guide line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-dodger-blue/30 to-transparent" />
@@ -50,94 +46,94 @@ const Contact: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           {/* Headline */}
-          <h2 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-white mb-8 tracking-tight">
-            KLAAR VOOR DE <br />
-            <span className="text-dodger-blue">VOLGENDE STAP?</span>
+          <h2 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-white mb-6 tracking-tight">
+            Klaar om jouw <br />
+            <span className="text-dodger-blue">verhaal tot leven te brengen?</span>
           </h2>
 
           {/* Subheadline */}
-          <p className="text-gray-400 text-xl max-w-2xl mx-auto mb-16 font-light">
-            Vertel ons waar je naartoe wilt.
-            <br />
-            Wij vertalen dat naar video die blijft hangen.
+          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+            Laat ons weten wat jij wilt bereiken. <br />
+            Wij zetten het om in een video die écht blijft hangen.
           </p>
 
           {/* FORM */}
           <form
-  onSubmit={handleSubmit}
-  className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
->
-  {/* Honeypot */}
-  <input type="text" name="company" className="hidden" />
+            onSubmit={handleSubmit}
+            className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
+          >
+            {/* Honeypot */}
+            <input type="text" name="company" className="hidden" />
 
-  {/* Rij 1 */}
-  <input
-    required
-    name="name"
-    placeholder="Naam *"
-    className="contact-input"
-  />
-  <input
-    required
-    type="email"
-    name="email"
-    placeholder="E-mail *"
-    className="contact-input"
-  />
+            {/* Rij 1 */}
+            <input
+              required
+              name="name"
+              placeholder="Bijv. Jan de Vries"
+              className="contact-input placeholder-gray-400"
+            />
+            <input
+              required
+              type="email"
+              name="email"
+              placeholder="Bijv. jan@email.com"
+              className="contact-input placeholder-gray-400"
+            />
 
-  {/* Rij 2 */}
-  <input
-    name="business"
-    placeholder="Bedrijfsnaam"
-    className="contact-input"
-  />
-  <input
-    name="link"
-    placeholder="Website of social link"
-    className="contact-input"
-  />
+            {/* Rij 2 */}
+            <input
+              name="business"
+              placeholder="Bedrijfsnaam (optioneel)"
+              className="contact-input placeholder-gray-400"
+            />
+            <input
+              name="link"
+              placeholder="Website, Instagram of LinkedIn"
+              className="contact-input placeholder-gray-400"
+            />
 
-  {/* Rij 3 – Dropdown */}
-  <select
-    required
-    name="service"
-    defaultValue=""
-    className="contact-input md:col-span-2"
-  >
-  <option value="" disabled className="text-gray-400">
-  Waar kunnen we je mee helpen? *
-</option>
-    <option value="short-form">Short-form content (Reels / TikTok)</option>
-    <option value="social-video">Social media video</option>
-    <option value="ads">Advertentie video’s</option>
-    <option value="brand-film">Brand / bedrijfsfilm</option>
-    <option value="other">Anders</option>
-  </select>
+            {/* Rij 3 – Dropdown */}
+            <select
+              required
+              name="service"
+              defaultValue=""
+              className="contact-input md:col-span-2 text-gray-400 placeholder-gray-400"
+            >
+              <option value="" disabled className="text-gray-400">
+                Waar kunnen we je mee helpen? *
+              </option>
+              <option value="short-form">Short-form content (Reels / TikTok)</option>
+              <option value="social-video">Social media video</option>
+              <option value="ads">Advertentie video’s</option>
+              <option value="brand-film">Brand / bedrijfsfilm</option>
+              <option value="other">Anders</option>
+            </select>
 
-  {/* Rij 4 – Textarea */}
-  <textarea
-    required
-    name="message"
-    placeholder="Wat wil je laten zien of bereiken met video?"
-    className="contact-input md:col-span-2 h-40 resize-none"
-  />
+            {/* Rij 4 – Textarea */}
+            <textarea
+              required
+              name="message"
+              placeholder="Wat wil je laten zien of bereiken met video?"
+              className="contact-input md:col-span-2 h-44 resize-none placeholder-gray-400"
+            />
 
-  {/* CTA */}
-  <div className="md:col-span-2 flex flex-col items-center mt-10 gap-4">
-    <button
-      type="submit"
-      disabled={loading}
-      className="relative px-14 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.25em] text-sm rounded-sm shadow-[0_0_30px_rgba(30,144,255,0.45)] hover:shadow-[0_0_50px_rgba(30,144,255,0.7)] transition-all"
-    >
-      {loading ? 'Even laden…' : 'Plan een kennismaking'}
-    </button>
+            {/* CTA */}
+            <div className="md:col-span-2 flex flex-col items-center mt-10 gap-4">
+              <button
+                type="submit"
+                disabled={loading}
+                className="relative px-16 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.25em] text-sm rounded-md shadow-[0_0_30px_rgba(30,144,255,0.45)] hover:shadow-[0_0_50px_rgba(30,144,255,0.7)] transition-all"
+              >
+                {loading ? 'Even laden…' : 'Start jouw videoproject'}
+              </button>
 
-    <span className="text-xs text-gray-500 uppercase tracking-widest">
-      Vrijblijvend • Persoonlijk • Geen verplichtingen
-    </span>
-  </div>
-</form>
-
+              <span className="text-xs text-gray-500 uppercase tracking-widest flex gap-4">
+                <span>🎯 Vrijblijvend</span>
+                <span>🤝 Persoonlijk</span>
+                <span>🚀 Geen verplichtingen</span>
+              </span>
+            </div>
+          </form>
         </motion.div>
 
         {/* FOOTER */}
