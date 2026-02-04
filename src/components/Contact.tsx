@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Instagram, Linkedin, Phone, Play } from 'lucide-react';
 
-// Vervang dit met jouw Formspree endpoint
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mojnaaze';
 
 const Contact: React.FC = () => {
@@ -13,7 +12,8 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setLoading(true);
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
     // Honeypot (anti-spam)
     if (formData.get('company')) {
@@ -21,20 +21,32 @@ const Contact: React.FC = () => {
       return;
     }
 
+    const data = Object.fromEntries(formData.entries());
+
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
         setSubmitted(true);
-        e.currentTarget.reset();
+        form.reset();
+
+        // Verberg de melding na 5 seconden
+        setTimeout(() => setSubmitted(false), 5000);
       } else {
-        console.error('Formspree response not OK:', response);
+        const text = await response.text();
+        console.error('Formspree response not OK:', text);
+        alert('Er ging iets mis bij het verzenden. Probeer het opnieuw.');
       }
     } catch (err) {
       console.error('Formspree error:', err);
+      alert('Er ging iets mis bij het verzenden. Probeer het opnieuw.');
     } finally {
       setLoading(false);
     }
@@ -92,7 +104,6 @@ const Contact: React.FC = () => {
                 placeholder="Bijv. Jan de Vries"
                 className="contact-input placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dodger-blue rounded-md px-4 py-3 bg-gray-900 text-white"
               />
-            
             </div>
             <div className="flex flex-col">
               <input
@@ -102,7 +113,6 @@ const Contact: React.FC = () => {
                 placeholder="Bijv. jan@email.com"
                 className="contact-input placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dodger-blue rounded-md px-4 py-3 bg-gray-900 text-white"
               />
-            
             </div>
 
             {/* Rij 2 */}
@@ -148,7 +158,6 @@ const Contact: React.FC = () => {
                 placeholder="Wat wil je laten zien of bereiken met video?"
                 className="contact-input resize-none h-48 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dodger-blue rounded-md px-4 py-3 bg-gray-900 text-white"
               />
-            
             </div>
 
             {/* CTA */}
