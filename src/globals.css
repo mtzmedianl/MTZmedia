@@ -9,7 +9,7 @@
   /* Kleuren */
   --background: #0a0a0a;
   --foreground: #ededed;
-  --dodger-blue: #0072e8;
+  --dodger-blue: #1e90ff; /* officiële DodgerBlue */
 
   /* Fonts */
   --font-geist-sans: 'Geist Sans', Arial, Helvetica, sans-serif;
@@ -30,22 +30,45 @@ body {
 
 .contact-input {
   width: 100%;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 16px 18px;
   color: #ffffff;
   font-size: 15px;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 2px;
+  transition: 
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .contact-input::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .contact-input:focus {
   outline: none;
+  background: rgba(255, 255, 255, 0.06);
   border-color: var(--dodger-blue);
-  box-shadow: 0 0 0 1px rgba(0, 114, 232, 0.5);
+  box-shadow: 0 0 0 1px rgba(30, 144, 255, 0.6);
+}
+
+/* =========================
+   SELECT FIX (BELANGRIJK)
+   ========================= */
+
+select.contact-input {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7L10 12L15 7' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.25rem center;
+  background-size: 1rem;
+}
+
+/* Disabled option (placeholder) */
+select.contact-input option[value=""] {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* =========================
@@ -66,7 +89,7 @@ body {
    ========================= */
 
 ::selection {
-  background: rgba(0, 114, 232, 0.4);
+  background: rgba(30, 144, 255, 0.4);
   color: white;
 }
 
@@ -85,5 +108,5 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 114, 232, 0.6);
+  background: rgba(30, 144, 255, 0.6);
 }
