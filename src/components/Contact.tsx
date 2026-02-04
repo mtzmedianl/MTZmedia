@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Instagram, Linkedin, Phone } from 'lucide-react';
 
+const CALENDLY_URL =
+  'https://calendly.com/mateusz-mtzmedia/30min?background_color=0c0c0c&text_color=ffffff&primary_color=1e90ff';
+
 const Contact: React.FC = () => {
-  const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -12,25 +14,32 @@ const Contact: React.FC = () => {
 
     const formData = new FormData(e.currentTarget);
 
-    // Honeypot
+    // Honeypot (anti-spam)
     if (formData.get('company')) {
       setLoading(false);
       return;
     }
 
-    // ⬇️ hier later backend / email / Formspree
-    await new Promise((r) => setTimeout(r, 1200));
+    /**
+     * HIER:
+     * later → mail / backend / Formspree / Resend
+     * nu → UX flow testen
+     */
+    await new Promise((r) => setTimeout(r, 800));
 
-    setSent(true);
-    setLoading(false);
+    // Redirect naar Calendly
+    window.location.href = CALENDLY_URL;
   };
 
   return (
-    <section id="contact" className="bg-transparent relative pt-32 pb-16 overflow-hidden">
-      {/* Vertical Guide Line */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-b from-transparent via-dodger-blue/30 to-transparent" />
+    <section
+      id="contact"
+      className="bg-transparent relative pt-32 pb-16 overflow-hidden"
+    >
+      {/* Vertical guide line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-dodger-blue/30 to-transparent" />
 
-      {/* Background Glow */}
+      {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-dodger-blue/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
@@ -40,58 +49,76 @@ const Contact: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
+          {/* Headline */}
           <h2 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-white mb-8 tracking-tight">
-            KLAAR VOOR DE <br />
-            <span className="text-dodger-blue">VOLGENDE STAP?</span>
+            LATEN WE IETS <br />
+            <span className="text-dodger-blue">STERKS BOUWEN.</span>
           </h2>
 
+          {/* Subheadline */}
           <p className="text-gray-400 text-xl max-w-2xl mx-auto mb-16 font-light">
-            We nemen een beperkt aantal nieuwe klanten aan voor Q4.
+            Vertel ons waar je naartoe wilt.
             <br />
-            Laten we samen iets buitengewoons creëren.
+            Wij vertalen dat naar video die blijft hangen.
           </p>
 
-          {!sent ? (
-            <form
-              onSubmit={handleSubmit}
-              className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
-            >
-              {/* Honeypot */}
-              <input type="text" name="company" className="hidden" />
+          {/* FORM */}
+          <form
+            onSubmit={handleSubmit}
+            className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
+          >
+            {/* Honeypot */}
+            <input type="text" name="company" className="hidden" />
 
-              <input required name="name" placeholder="Naam *" className="contact-input" />
-              <input required type="email" name="email" placeholder="E-mail *" className="contact-input" />
-              <input name="phone" placeholder="Telefoonnummer" className="contact-input" />
-              <input name="business" placeholder="Bedrijfsnaam" className="contact-input" />
+            <input
+              required
+              name="name"
+              placeholder="Naam *"
+              className="contact-input"
+            />
+            <input
+              required
+              type="email"
+              name="email"
+              placeholder="E-mail *"
+              className="contact-input"
+            />
 
-              <textarea
-                required
-                name="message"
-                placeholder="Waarmee kunnen we je helpen?"
-                className="contact-input md:col-span-2 h-40 resize-none"
-              />
+            <input
+              name="business"
+              placeholder="Bedrijfsnaam"
+              className="contact-input"
+            />
+            <input
+              name="link"
+              placeholder="Website of social link"
+              className="contact-input"
+            />
 
-              <div className="md:col-span-2 flex justify-center mt-8">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="relative px-12 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.2em] text-sm rounded-sm shadow-[0_0_30px_rgba(0,114,232,0.5)] hover:shadow-[0_0_50px_rgba(0,114,232,0.7)] transition-all"
-                >
-                  {loading ? 'Verzenden…' : 'Start jouw Project'}
-                </button>
-              </div>
-            </form>
-          ) : (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-white">
-              <h3 className="text-3xl font-bold mb-4">Thanks 🚀</h3>
-              <p className="text-gray-400">
-                We nemen zo snel mogelijk contact met je op.
-              </p>
-            </motion.div>
-          )}
+            <textarea
+              required
+              name="message"
+              placeholder="Vertel kort over je idee of doel"
+              className="contact-input md:col-span-2 h-40 resize-none"
+            />
+
+            <div className="md:col-span-2 flex flex-col items-center mt-10 gap-4">
+              <button
+                type="submit"
+                disabled={loading}
+                className="relative px-14 py-5 bg-dodger-blue text-white font-bold uppercase tracking-[0.25em] text-sm rounded-sm shadow-[0_0_30px_rgba(30,144,255,0.45)] hover:shadow-[0_0_50px_rgba(30,144,255,0.7)] transition-all"
+              >
+                {loading ? 'Even laden…' : 'Plan een kennismaking'}
+              </button>
+
+              <span className="text-xs text-gray-500 uppercase tracking-widest">
+                Vrijblijvend • Persoonlijk • Geen verplichtingen
+              </span>
+            </div>
+          </form>
         </motion.div>
 
-        {/* Footer */}
+        {/* FOOTER */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -112,10 +139,18 @@ const Contact: React.FC = () => {
 
           <div className="flex flex-col items-center md:items-end gap-6">
             <div className="flex space-x-8">
-              <a href="https://www.instagram.com/mtzmedia.nl/" target="_blank" className="social">
+              <a
+                href="https://www.instagram.com/mtzmedia.nl/"
+                target="_blank"
+                className="social"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="https://www.linkedin.com" target="_blank" className="social">
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                className="social"
+              >
                 <Linkedin size={20} />
               </a>
               <a href="mailto:contact@mtzmedia.com" className="social">
