@@ -82,7 +82,7 @@ const Contact: React.FC = () => {
           {/* Success Toast */}
           {submitted && (
             <div className="mb-6 inline-block px-6 py-3 bg-dodger-blue/20 text-white rounded-md font-medium">
-              Bedankt! Ik neem binnenkort contact met je op. 💌
+              Bedankt! Ik neem binnenkort contact met je op.
               <br />
               (Je kunt ondertussen ook direct een afspraak plannen: <a href="https://calendly.com/mateusz-mtzmedia/30min?background_color=0c0c0c&text_color=ffffff&primary_color=1e90ff" className="text-dodger-blue underline">Plan hier</a>)
             </div>
