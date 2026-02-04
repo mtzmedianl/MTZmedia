@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, Instagram, Linkedin, Phone, Play } from 'lucide-react';
 
 // Vervang dit met jouw Formspree endpoint
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID?format=plain';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mojnaaze';
 
 const Contact: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -206,7 +206,7 @@ const Contact: React.FC = () => {
                 <Instagram size={20} />
               </a>
               <a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/in/mateusz-michalczyszyn-4172a1377/"
                 target="_blank"
                 className="social"
               >
@@ -221,7 +221,7 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="text-xs text-gray-600 uppercase tracking-widest">
-              © {new Date().getFullYear()} MTZ Media
+              © 2025 MTZ Media
             </div>
           </div>
         </motion.div>
