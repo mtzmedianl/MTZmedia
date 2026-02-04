@@ -59,16 +59,23 @@ body {
 
 select.contact-input {
   appearance: none;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7L10 12L15 7' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1.25rem center;
-  background-size: 1rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: rgba(255, 255, 255, 0.03);
+  color: #ffffff;
 }
 
-/* Disabled option (placeholder) */
-select.contact-input option[value=""] {
-  color: rgba(255, 255, 255, 0.4);
+/* Dropdown opties */
+select.contact-input option {
+  background-color: #0a0a0a; /* zelfde als background */
+  color: #ededed;
+}
+
+/* Hover / selected state (voor sommige browsers) */
+select.contact-input option:checked,
+select.contact-input option:hover {
+  background-color: rgba(0, 114, 232, 0.15);
+  color: #ffffff;
 }
 
 /* =========================
