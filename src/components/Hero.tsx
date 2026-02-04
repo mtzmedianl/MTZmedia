@@ -25,16 +25,18 @@ const Hero: React.FC = () => {
     />
 
         
-<motion.h1 
+<motion.h1
   variants={fadeInUp}
-  className="font-display font-bold tracking-tight text-white mb-8 leading-[0.9] text-[clamp(3rem,8vw,7rem)] md:text-[clamp(5rem,9vw,9rem)]"
+  className="font-display font-bold tracking-widest text-white leading-tight
+             text-[clamp(3rem,8vw,7rem)] md:text-[clamp(5rem,9vw,9rem)]"
 >
-  MTZ Media <br />
-
-  <span className="text-dodger-blue drop-shadow-[0_0_20px_rgba(18,116,229,0.4)] 
-                 text-[clamp(2rem,4vw,3rem)] md:text-[clamp(2.5rem,4vw,3.5rem)] block mt-2">
-  Creative Partner in videocontent
-</span>
+  MTZ MEDIA
+  <span className="text-dodger-blue">.</span>
+  
+  <span className="text-dodger-blue drop-shadow-[0_0_20px_rgba(18,116,229,0.4)] block mt-2
+                   text-[clamp(2rem,4vw,3rem)] md:text-[clamp(2.5rem,4vw,3.5rem)]">
+    Creative Partner in videocontent
+  </span>
 </motion.h1>
 
         {/* Subline / Tagline */}
@@ -48,7 +50,7 @@ const Hero: React.FC = () => {
               Strategisch. Creatief. <span className="text-dodger-blue">Resultaatgericht.</span>
             </p>
             <p className="text-lg md:text-xl text-gray-300 font-light tracking-wide">
-              Video’s die omzet én bereik laten groeien.
+              Video’s die omzet en bereik laten groeien.
             </p>
         </motion.div>
 
