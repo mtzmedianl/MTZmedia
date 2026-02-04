@@ -27,14 +27,14 @@ const Hero: React.FC = () => {
         
 <motion.h1
   variants={fadeInUp}
-  className="font-display font-bold tracking-widest text-white leading-tight
+  className="font-display font-bold tracking-tight text-white leading-tight
              text-[clamp(3rem,8vw,7rem)] md:text-[clamp(5rem,9vw,9rem)] uppercase"
 >
   MTZ MEDIA<span className="text-dodger-blue">.</span>
 
   <span
     className="block mt-2 text-dodger-blue drop-shadow-[0_0_20px_rgba(30,144,255,0.4)]
-               text-[clamp(2rem,4vw,3rem)] md:text-[clamp(2.5rem,4vw,3.5rem)] font-normal tracking-normal"
+               text-[clamp(2rem,4vw,3rem)] md:text-[clamp(2.5rem,4vw,3.5rem)] font-normal tracking-tight"
   >
     Creative Partner in videocontent
   </span>
